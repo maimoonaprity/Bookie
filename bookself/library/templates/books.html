@@ -1,0 +1,87 @@
+{% comment %} <h1>Book List</h1>
+
+<ul>
+{%for book in books%}
+
+<li>
+{{book.title}} - {{book.author}}- {{book.genre}} - {{book.price}}  
+<p></p>
+</li>
+{% endfor %}
+
+</ul> {% endcomment %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Book List</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f6f8;
+            padding: 40px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+            max-width: 700px;
+            margin: auto;
+        }
+
+        li {
+            background: white;
+            padding: 15px 20px;
+            margin-bottom: 12px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .title {
+            font-size: 18px;
+            font-weight: bold;
+            color: #222;
+        }
+
+        .meta {
+            color: #555;
+            margin-top: 5px;
+        }
+
+        .price {
+            color: green;
+            font-weight: bold;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+
+<h1>📚 Book List</h1>
+
+<ul>
+    {% for book in books %}
+    <li>
+        <div class="title">{{ book.title }}</div>
+
+        <div class="meta">
+            Author: {{ book.author }} |
+            Genre: {{ book.category }}
+        </div>
+
+        <div class="price">
+            Price: ৳ {{ book.price }}
+        </div>
+    </li>
+    {% endfor %}
+</ul>
+
+</body>
+</html>

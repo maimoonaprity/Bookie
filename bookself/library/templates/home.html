@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Bookself | Home</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f6f8;
+            margin: 0;
+            color: #333;
+        }
+
+        /* Navbar */
+        .navbar {
+            background-color: #ffffff;
+            padding: 15px 30px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+        }
+
+        .navbar a {
+            text-decoration: none;
+            margin-right: 20px;
+            color: #5f7c8a;
+            font-weight: bold;
+        }
+
+        /* Hero */
+        .hero {
+            text-align: center;
+            padding: 70px 20px;
+        }
+
+        .hero h1 {
+            font-size: 36px;
+            margin-bottom: 10px;
+        }
+
+        .hero p {
+            font-size: 18px;
+            color: #666;
+        }
+
+        .btn {
+            display: inline-block;
+            margin-top: 25px;
+            padding: 12px 28px;
+            background-color: #c9dde4;
+            color: #2f4f5f;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: bold;
+        }
+
+        /* Content */
+        .container {
+            max-width: 900px;
+            margin: auto;
+            padding: 20px;
+        }
+
+        .features {
+            display: flex;
+            gap: 20px;
+            margin-top: 40px;
+        }
+
+        .card {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            flex: 1;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        .card h3 {
+            margin-bottom: 10px;
+            color: #2f4f5f;
+        }
+
+        .card p {
+            color: #666;
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 20px;
+            color: #777;
+            margin-top: 50px;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Navbar -->
+<div class="navbar">
+    <a href="/">Home</a>
+    <a href="/books/">Books</a>
+    <a href="/admin/">Admin</a>
+    
+</div>
+
+<!-- Hero -->
+<div class="hero">
+    <h1>Welcome to Bookself 📚</h1>
+    <p>A simple and calm place to explore books</p>
+    <a href="/books/" class="btn">Browse Books</a>
+</div>
+
+<!-- Features -->
+<div class="container">
+    <div class="features">
+        <div class="card">
+            <a href= "/books/" style="text-decoration: none;"><h3>📖 Books</h3></a>
+            <p>Browse books with author, genre, and price.</p>
+        </div>
+
+        <div class="card">
+            <a href= "/author/" style="text-decoration: none;"><h3>✍️ Authors</h3></a>
+            <p>Each book is linked with its author.</p>
+        </div>
+
+        <div class="card">
+            <a href= "/category/" style="text-decoration: none;"><h3>🗂 Categories</h3>
+            <p>Books are organized by categories.</p>
+        </div>
+    </div>
+</div>
+
+<!-- Footer -->
+<div class="footer">
+    © 2025 Bookself — Django Beginner Project
+</div>
+
+</body>
+</html>

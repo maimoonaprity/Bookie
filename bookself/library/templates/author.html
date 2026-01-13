@@ -1,0 +1,153 @@
+ {% comment %} <h1> author list</h1>
+
+{%for author in authors%}
+<ul>
+
+<li>{{author.name}} -{{author.bio}}- {{book.author}}</li> 
+</ul>
+{%endfor%}   {% endcomment %}
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Bookself | Authors</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f6f8;
+            margin: 0;
+            color: #333;
+        }
+
+        /* Navbar */
+        .navbar {
+            background-color: #ffffff;
+            padding: 15px 30px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+        }
+
+        .navbar a {
+            text-decoration: none;
+            margin-right: 20px;
+            color: #5f7c8a;
+            font-weight: bold;
+        }
+
+        /* Page Header */
+        .page-header {
+            text-align: center;
+            padding: 50px 20px 30px;
+        }
+
+        .page-header h1 {
+            font-size: 32px;
+            margin-bottom: 8px;
+        }
+
+        .page-header p {
+            color: #666;
+        }
+
+        /* Content */
+        .container {
+            max-width: 900px;
+            margin: auto;
+            padding: 20px;
+        }
+
+        .author-card {
+            background: white;
+            padding: 25px;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .author-name {
+            font-size: 20px;
+            font-weight: bold;
+            color: #2f4f5f;
+            margin-bottom: 6px;
+        }
+
+        .author-bio {
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 12px;
+        }
+
+        .books-title {
+            font-weight: bold;
+            color: #5f7c8a;
+            margin-bottom: 6px;
+        }
+
+        ul {
+            padding-left: 18px;
+            margin: 0;
+        }
+
+        li {
+            margin-bottom: 6px;
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 20px;
+            color: #777;
+            margin-top: 40px;
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- Navbar -->
+<div class="navbar">
+    <a href="/">Home</a>
+    <a href="/books/">Books</a>
+    <a href="/author/">Authors</a>
+    <a href="/admin/">Admin</a>
+</div>
+
+<!-- Header -->
+<div class="page-header">
+    <h1>Authors ✍️</h1>
+    <p>Discover authors and the books they have written</p>
+</div>
+
+<!-- Author List -->
+<div class="container">
+
+    {% for author in authors %}
+        <div class="author-card">
+
+            <div class="author-name">{{ author.name }}</div>
+            <div class="author-bio">{{ author.bio }}</div>
+
+            <div class="books-title">Books written</div>
+            <ul>
+                {% for book in author.books.all %}
+                    <li>{{ book.title }}</li>
+                {% empty %}
+                    <li>No books available</li>
+                {% endfor %}
+            </ul>
+
+        </div>
+    {% endfor %}
+
+</div>
+
+<!-- Footer -->
+<div class="footer">
+    © 2025 Bookself — Django Beginner Project
+</div>
+
+</body>
+</html>

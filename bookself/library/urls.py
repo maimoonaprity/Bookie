@@ -1,18 +1,15 @@
-from . import views
+
+from .views import BookList, SpecificBook, AuthorList, SpecificAuthor, AuthorBooks, AuthorSpecificBook
 from django.urls import path, include
-from rest_framework.routers import DefaultRouter
-from rest_framework_nested.routers import NestedDefaultRouter
 
 
+urlpatterns = [
+    path('books/', BookList.as_view(), name= "book-list"),
+    path('book/<int:pk>/', SpecificBook.as_view(), name = "specific-book"),
+    path('authors/', AuthorList.as_view(), name= 'author-list'),
+    path('author/<int:pk>/',SpecificAuthor.as_view(), name="specific-author" ),
+    path('author/<int:pk>/books/', AuthorBooks.as_view(), name='authors-books' ),
+    path('author/<int:author_pk>/book/<int:pk>', AuthorSpecificBook.as_view(), name='authors-specific-books'),
 
-router = DefaultRouter()
-router.register('authors', views.AuthorViewSet, basename='author')
-router.register('books', views.BookViewSet, basename='book')
+]
 
-authors_router = NestedDefaultRouter(router, 'authors', lookup= 'author')
-
-authors_router.register('books', views.AuthorBookViewSet, basename='author-books')
-
-
-
-urlpatterns = router.urls + authors_router.urls

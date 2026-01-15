@@ -1,26 +1,62 @@
 from django.shortcuts import render
-from django.http import HttpResponse
-from .models import Book, Category, Author
-from rest_framework.viewsets import ModelViewSet
-from .serializers import BookSerializer, AuthorSerializer
+from rest_framework.views import APIView
+from django.shortcuts import get_object_or_404
+from rest_framework.generics import ListAPIView,RetrieveAPIView
+from rest_framework.response import Response
+from rest_framework import status
+from .models import Book, Author
+from .serializers import BookSerializer, AuthorSerializer, BookMiniSerializer
 
-class BookViewSet(ModelViewSet):
-    queryset = Book.objects.select_related('author','category', 'publisher')
-    serializer_class = BookSerializer
 
+class BookList(APIView):
+    def get(self,request):
+        books = Book.objects.select_related('author', 'category', 'publisher')
+        serializer = BookSerializer(books, many= True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
 
-class AuthorBookViewSet(ModelViewSet):
-    
-    serializer_class = BookSerializer
-    def get_queryset(self):
-        return (
-            Book.objects
-            .select_related('author', 'category', 'publisher')
-            .filter(author_id=self.kwargs['author_pk'])
+class SpecificBook(APIView):
+    def get(self, request,pk):
+        book = get_object_or_404(Book.objects.select_related('author', 'category', 'publisher'), pk= pk
         )
-   
+        serializer = BookSerializer(book)
+        return Response(serializer.data, status=status.HTTP_200_OK)
 
-
-class AuthorViewSet(ModelViewSet):
+class AuthorList(ListAPIView):
     queryset = Author.objects.all()
     serializer_class = AuthorSerializer
+
+class SpecificAuthor(RetrieveAPIView):
+    queryset = Author.objects.all()
+    serializer_class = AuthorSerializer
+
+class AuthorBooks(ListAPIView):
+    serializer_class = BookMiniSerializer
+
+    def get_queryset(self):
+        author_id = self.kwargs['pk']
+        return Book.objects.filter(author_id = author_id)
+    
+class AuthorSpecificBook(RetrieveAPIView):
+    serializer_class = BookMiniSerializer
+
+    def get_queryset(self):
+        author_id = self.kwargs['author_pk']
+        return Book.objects.filter(author_id = author_id)
+        
+
+    
+
+
+
+
+
+
+# class BookList(ListAPIView):
+#     queryset = Book.objects.select_related('author', 'category', 'publisher')
+#     serializer_class = BookSerializer
+
+# class SpecificBook(RetrieveAPIView):
+#     queryset =Book.objects.select_related('author', 'category', 'publisher')
+#     serializer_class = BookSerializer
+
+

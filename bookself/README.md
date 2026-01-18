@@ -80,4 +80,12 @@ This architecture reflects a real-world scenario where:
 
 > ❗ POST, PUT, PATCH, DELETE are **disabled** for public users.
 
+## 📑 API Documentation
+
+Full API documentation is available in Notion:
+
+[View API Documentation in Notion](https://www.notion.so/Bookshelf-Rest-API-Project-Documentation-2ebc3627c3d080e8b64fd3de57fb7ae9)
+
+> This contains all endpoints, sample requests/responses, and usage instructions.
+
 ---

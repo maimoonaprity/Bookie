@@ -21,7 +21,7 @@ class BookAdmin(admin.ModelAdmin):
 
 @admin.register(models.Category)
 class CategoryAdmin(admin.ModelAdmin):
-    list_display = ['genre']
+    list_display = ['id','genre']
     inlines = [BookInline]
 
 @admin.register(models.Publisher)

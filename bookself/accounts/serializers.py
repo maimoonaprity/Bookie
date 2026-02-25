@@ -1,27 +1,40 @@
 from rest_framework import serializers
 from django.contrib.auth import get_user_model
-from library.models import Author
+from library.models import Author, Customer
 
 
 
 User = get_user_model()
-class RegisterSerializer(serializers.ModelSerializer):
+class AuthorRegisterSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ['username','name', 'password', 'role']
+        fields = ['username','name', 'password']
         extra_kwargs = {'password': {'write_only': True}}
 
     def create(self, validated_data):
-        role = validated_data.get('role')
       
 
         # create user
         user = User.objects.create_user(**validated_data)
-        if role == 'author':
-            Author.objects.create(user=user,name=user.name,bio= user.bio)
-
+        Author.objects.create(user=user,name=user.name)
         return user
+    
+    
+class CustomerRegisterSerializer(serializers.ModelSerializer):
+        class Meta:
+            model = User
+            fields = ['username','name', 'password']
+            extra_kwargs = {'password': {'write_only': True}}
+
+        def create(self, validated_data):
+        
+
+            # create user
+            user = User.objects.create_user(**validated_data)
+            Customer.objects.create(user=user,name=user.name)
+            return user
+
 
 
 

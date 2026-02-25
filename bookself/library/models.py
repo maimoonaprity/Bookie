@@ -11,6 +11,10 @@ class Author(models.Model):
     def __str__(self):
         return self.name
     
+class Customer(models.Model):
+    user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    name =  name = models.CharField(max_length=255, blank=True, null=True)
+    
 class Category(models.Model):
     genre = models.CharField(max_length=255)
 

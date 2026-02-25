@@ -15,8 +15,8 @@ urlpatterns = [
     path('author/books/',AuthorBookView.as_view(), name = 'loggedinauthorbooks'),
     path('author/books/<int:pk>/', AuthorBookView.as_view(), name='author-books-detail'),
 
-   path('booklist/asauthor/', AuthorBookListView.as_view()),
-   path('booklist/asauthor/<int:pk>', AuthorBookListView.as_view())
+    path('booklist/asauthor/', AuthorBookListView.as_view()),
+    path('booklist/asauthor/<int:pk>', AuthorBookListView.as_view())
 
 
 ]
